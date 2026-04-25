@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+
+  <!-- Application entry point — loads at Revit startup, creates ribbon -->
+  <AddIn Type="Application">
+    <Name>PointCloudUtils</Name>
+    <Assembly>C:\ProgramData\Autodesk\Revit\Addins\2026\PointCloudUtils\PointCloudUtils.dll</Assembly>
+    <FullClassName>PointCloudUtils.App</FullClassName>
+    <ClientId>a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d</ClientId>
+    <VendorId>V2</VendorId>
+    <VendorDescription>Studio V2</VendorDescription>
+  </AddIn>
+
+  <!-- Toggle window command — can be assigned a keyboard shortcut -->
+  <AddIn Type="Command">
+    <Name>Toggle Point Cloud Visibility Window</Name>
+    <Description>Show or hide the Point Cloud Visibility floating panel</Description>
+    <Assembly>C:\ProgramData\Autodesk\Revit\Addins\2026\PointCloudUtils\PointCloudUtils.dll</Assembly>
+    <FullClassName>PointCloudUtils.Commands.ToggleWindowCommand</FullClassName>
+    <ClientId>b2c3d4e5-f6a7-5b6c-9d0e-1f2a3b4c5d6e</ClientId>
+    <VendorId>V2</VendorId>
+    <VendorDescription>Studio V2</VendorDescription>
+  </AddIn>
+
+</RevitAddIns>

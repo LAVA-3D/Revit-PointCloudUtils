@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <AssemblyName>PointCloudUtils</AssemblyName>
+    <RootNamespace>PointCloudUtils</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseWPF>true</UseWPF>
+    <NoWarn>MSB3277</NoWarn>
+    <RevitDir>C:\Program Files\Autodesk\Revit 2026\</RevitDir>
+    <OutputPath>build\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+
+  <!-- Local dev: Revit is installed -> use the real DLLs from the Revit folder -->
+  <ItemGroup Condition="Exists('$(RevitDir)RevitAPI.dll')">
+    <Reference Include="RevitAPI">
+      <HintPath>$(RevitDir)RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>$(RevitDir)RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- CI: Revit not installed -> use Nice3point NuGet shims (reference-only) -->
+  <ItemGroup Condition="!Exists('$(RevitDir)RevitAPI.dll')">
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="2026.*" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="2026.*" />
+  </ItemGroup>
+
+  <!-- System.Drawing (for GDI+ icon generation) -->
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="8.*" />
+  </ItemGroup>
+
+  <!-- Copy config.json to output -->
+  <ItemGroup>
+    <None Update="config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <!-- Copy .addin manifest into build/ so everything needed for install is in one place -->
+  <Target Name="CopyAddinManifest" AfterTargets="Build">
+    <Copy SourceFiles="$(ProjectDir)PointCloudUtils.addin" DestinationFolder="$(OutputPath)" />
+  </Target>
+
+</Project>

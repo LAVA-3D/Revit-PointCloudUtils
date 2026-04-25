@@ -1,0 +1,24 @@
+# Build output
+bin/
+obj/
+build/
+
+# IDE
+.vs/
+*.user
+*.suo
+*.csproj.user
+
+# Installer output
+installer/*.exe
+
+# NuGet
+packages/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Per-document data files (generated at runtime)
+pointclouds_*.json
