@@ -22,4 +22,15 @@
     <VendorDescription>Studio V2</VendorDescription>
   </AddIn>
 
+  <!-- Toggle All command — can be assigned a keyboard shortcut -->
+  <AddIn Type="Command">
+    <Name>Toggle All Point Clouds</Name>
+    <Description>Show or hide all point clouds in the active view. Hides all when all are visible; shows all when any are hidden.</Description>
+    <Assembly>C:\ProgramData\Autodesk\Revit\Addins\2026\PointCloudUtils\PointCloudUtils.dll</Assembly>
+    <FullClassName>PointCloudUtils.Commands.ToggleAllCommand</FullClassName>
+    <ClientId>6958c932-d5b4-4e5b-88c2-1589a300585a</ClientId>
+    <VendorId>V2</VendorId>
+    <VendorDescription>Studio V2</VendorDescription>
+  </AddIn>
+
 </RevitAddIns>
